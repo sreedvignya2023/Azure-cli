@@ -1,0 +1,459 @@
+az ad sp create-for-rbac --name ServicePrincipalName
+
+az account show 
+
+
+
+az group create --name "daarvisree" --location "east US"                                                vishnupriya1.onmicrosoft.com
+
+az group list
+
+
+az ad sp create-for-rbac --name ansibleservice
+
+az group create --name daarvinewage --location eastus
+
+az vm create --resource-group ODL-az-303-512461 --name ubuntuvm1 --image Ubuntu 20.04LTS --admin-username sistlm  --admin-password --generate-ssh-keys
+
+
+az vm create --name daarvivm --resource-group  Sreedaarvigroup --image Ubuntuserver20.04 LTS --count 2 --admin-username sistlm --admin-password Mahi$$$$211980
+
+
+az vm create --name vishnulakshmiVM2 --resource-group Daarvi --location EastUS2 --image Win2022Datacenter  --public-ip-sku Standard --admin-user sistlm 
+
+az vm create --name projectvm1 --resource-group ODL-az-303-512461 --image Win2022Datacenter  --admin-user sistlm --admin-password mahi$$$$211980 --public-ip-sku Standard
+
+az vm open-port --resource-group ODL-az-303-511155 --name vishnlakshmivm1  --port 8080
+
+
+az storage account create --name projectintellijstorage --resource-group ODL-az-303-512461 --location eastus2 --sku standard_GRS   OR  standard_LRS
+
+az storage account create --name vishnulakshmistorage --resource-group ODL-az-303-511155 --location WestUS2 --sku standard_GRS
+
+
+az lock create --name LockGroup --lock-type CanNotDelete --resource-group exampleGroup                                      lock resourcegroup
+
+az lock delete --name exampleLock --resource-group exampleGroup                                                             delete resourcegroup
+
+
+az keyvault create --name sreevginaya --resource-group sreevidyavignya --location "eastus"
+
+az storage account create -n daarvistorageac -g ODL-az-303-511307 -l WestUS2 --sku Standard_LRS
+
+az sql db copy -g ODL-az-303-511307 -s vishnusql -n originalDb --dest-name newDb --service-objective S0       or -f Gen4 -c 1 
+
+
+
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+
+
+
+
+az vm create \
+    --resource-group "newrequirement4" \
+    --name "newvmmachine1" \
+    --image win2019datacenter \
+    --admin-username sistlm 
+
+
+az group create --name "newrg1" --location "West us" 
+az group deployment create --resource-group "newrg1" --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-windows/azuredeploy.json
+
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+
+
+
+
+# login to your Azure account from the Azure CLI
+az login  
+
+# select the Azure subscription you want to use in your account
+az account set –-subscription “My Demos”  
+
+# create a new resource group in your subscription (or skip this step if
+# using an existing resource group)
+az group create –-location westus2 –-name MyResourceGroup
+
+az appservice plan create --name sreevignya --resource-group sreevidyavignya --sku FREE
+
+az webapp create --name sreevignyaweb --resource-group sreevidyavignya --plan sreevignya
+
+
+
+# create a new server in Azure MySQL database within the selected resource
+# group 
+az mysql server create –-name MySQLServer –-resource-group MyResourceGroup `
+--location westus2 –-user AdminUser –-password AdminPassword
+
+# create a new firewall rule for your MySQL database to allow client
+# connections
+az mysql server firewall-rule create –-name MyFirewallRule –-server `
+MySQLServer –-resource-group MyResourceGroup –-start-ip-address 0.0.0.0 `
+--end-ip-address 255.255.255.255
+
+
+
+
+
+
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "Username for the Virtual Machine."
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "minLength": 12,
+      "metadata": {
+        "description": "Password for the Virtual Machine."
+      }
+    },
+    "dnsLabelPrefix": {
+      "type": "string",
+      "defaultValue": "[toLower(concat(parameters('vmName'),'-', uniqueString(resourceGroup().id, parameters('vmName'))))]",
+      "metadata": {
+        "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+      }
+    },
+    "publicIpName": {
+      "type": "string",
+      "defaultValue": "mynewcompanyip1",
+      "metadata": {
+        "description": "Name for the Public IP used to access the Virtual Machine."
+      }
+    },
+    "publicIPAllocationMethod": {
+      "type": "string",
+      "defaultValue": "Dynamic",
+      "allowedValues": [
+        "Dynamic",
+        "Static"
+      ],
+      "metadata": {
+        "description": "Allocation method for the Public IP used to access the Virtual Machine."
+      }
+    },
+    "publicIpSku": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard"
+      ],
+      "metadata": {
+        "description": "SKU for the Public IP used to access the Virtual Machine."
+      }
+    },
+
+    "OSVersion": {
+      "type": "string",
+      "defaultValue": "2019-Datacenter",
+      "allowedValues": [
+        "2008-R2-SP1",
+        "2012-Datacenter",
+        "2012-R2-Datacenter",
+        "2016-Nano-Server",
+        "2016-Datacenter-with-Containers",
+        "2016-Datacenter",
+        "2019-Datacenter",
+        "2019-Datacenter-Core",
+        "2019-Datacenter-Core-smalldisk",
+        "2019-Datacenter-Core-with-Containers",
+        "2019-Datacenter-Core-with-Containers-smalldisk",
+        "2019-Datacenter-smalldisk",
+        "2019-Datacenter-with-Containers",
+        "2019-Datacenter-with-Containers-smalldisk"
+      ],
+      "metadata": {
+        "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
+      }
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_D8s_v3",
+      "metadata": {
+        "description": "Size of the virtual machine."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    },
+    "vmName": {
+      "type": "string",
+      "defaultValue": "newcompanyvm1",
+      "metadata": {
+        "description": "Name of the virtual machine."
+      }
+    }
+  },
+  "variables": {
+    "storageAccountName": "[concat('bootdiags', uniquestring(resourceGroup().id))]",
+    "nicName": "mynewnic1",
+    "addressPrefix": "10.0.0.0/16",
+    "subnetName": "newcompnaysubnet",
+    "subnetPrefix": "10.0.0.0/24",
+    "virtualNetworkName": "mycompanyvnet1",
+    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
+    "networkSecurityGroupName": "default-NSG"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "name": "[variables('newrg1')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "Storage",
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2020-06-01",
+      "name": "[parameters('publicIPName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('publicIpSku')]"
+      },
+      "properties": {
+        "publicIPAllocationMethod": "[parameters('publicIPAllocationMethod')]",
+        "dnsSettings": {
+          "domainNameLabel": "[parameters('dnsLabelPrefix')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2020-06-01",
+      "name": "[variables('networkSecurityGroupName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "default-allow-3389",
+            "properties": {
+              "priority": 1000,
+              "access": "Allow",
+              "direction": "Inbound",
+              "destinationPortRange": "3389",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-06-01",
+      "name": "[variables('virtualNetworkName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+      ],
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('addressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('subnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('subnetPrefix')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2020-06-01",
+      "name": "[variables('nicName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPName'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPName'))]"
+              },
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2020-06-01",
+      "name": "[parameters('vmName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "[parameters('OSVersion')]",
+            "version": "latest"
+          },
+          "osDisk": {
+            "createOption": "FromImage",
+            "managedDisk": {
+              "storageAccountType": "StandardSSD_LRS"
+            }
+          },
+          "dataDisks": [
+            {
+              "diskSizeGB": 1023,
+              "lun": 0,
+              "createOption": "Empty"
+            }
+          ]
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true,
+            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))).primaryEndpoints.blob]"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "hostname": {
+      "type": "string",
+      "value": "[reference(parameters('publicIPName')).dnsSettings.fqdn]"
+    }
+  }
+}
+
+
+
+
+
+gitrepo=https://github.com/azure-sample/php-docs-hello-world
+
+az webapp dcepolyment source config --name $webappname --resource-group myResourceGroup --repo-url $gitrepo --branch master --manual-integration 
+
+echo https://$webappname.azurewebsites.net  
+
+
+webappname=mywebapp$RANDOM
+
+az group create --location westeurope --name myResourceGroup
+
+az appservice plan create --name sreevignya --resource-group sreevidyavignya --sku FREE
+
+az webapp create --name sreevignyaweb --resource-group sreevidyavignya --plan sreevignya
+
+az webapp create --name $webappname 
+
+            --resource-group myResourceGroup
+			--plan $webappname
+			
+			
+			
+			
+az webapp config set --linux-fx-version "DOTNETCORE|3.1" --resource-group <groupname> -name <appname>
+
+az webapp config set --php-version 7.0 --resource-group <groupname> --name <appname>
+
+az webapp config set --python-verison 3.4 --resource-group <groupname> --name <appname>
+
+az webapp config set --resource-group <groupname> --name <appname> --java-version 1.8 --java-container Tomcat --java-container-verison 9.0
+
+
+
+az webapp config appsettings set `
+    --resource-group <groupname>
+	--name <appname>
+	--settings WEBSITE_NODE_DEFAULT_VERSION=8.9.3
+
+import logging 
+
+import azure.funcations as func 
+
+def main(myblob: func.Inputstrem):
+    logging.info(f"python blob trigger funcation processed\n"
+	f"NAME: {myblob.name}\n"
+	f"Blob size: {myblob.length} bytes")
+	
+	
+public class Funcation {
+     public String echo(
+         @HttpTigger(
+            name = "request"
+               methods= {"post"}
+            authLevel = AuthoizationLevel.ANONYMOUS
+        )
+        string request, ExectionContext context) {
+        returun String.format(request);
+        }
+    } 		
+	
+
+
+az webapp deployment slot create --name <newdaarviweb> --resource-group <sreevidyavignya> --name slot staging
+
+az webapp deployment slot swap --resour-group <groupname> --name <appname> --slot staging --traget-slot production 
+
+
+
+
+az storage account create --name daarvi2storage --resource-group ODL-az-204-575512 --location westus2 --sku Standard_GRS
+
+
+
+az vm create --resource-group ODL-az-204-575512 --name DaarviVm1 --image win2019datacenter --admin-username sisltm --admin-password Mahi$$$$211980 --size Standard_D4s_v3 --use-unmanaged-disk --storage-sku Standard_GRS
+
+
+
+
+az keyvault create --name daarvikeyvalut --resource-group ODL-az-204-575512 -l West US 2
+
+
+
